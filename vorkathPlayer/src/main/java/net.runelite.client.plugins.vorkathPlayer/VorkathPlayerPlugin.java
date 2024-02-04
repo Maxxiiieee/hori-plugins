@@ -802,12 +802,19 @@ public class VorkathPlayerPlugin extends iScript {
 					switch(config.rellekkaTeleport().getOption()){
 						case 0:
 							GameObject badBooth = objectUtils.getGameObjectAtWorldPoint(new WorldPoint(2098, 3920, 0));
+							try {
+								Thread.sleep(10000);
+							} catch(InterruptedException e) {
+							}
 							if(chatboxIsOpen()){
 								continueChat();
-							}else
-							if(badBooth != null && !player.isMoving()){
+							} else if(badBooth != null && !player.isMoving()) {
 								actionObject(badBooth.getId(), MenuAction.GAME_OBJECT_SECOND_OPTION, badBooth.getWorldLocation());
 								timeout+=2;
+							}
+							break;
+					}
+					break;
 							}
 							break;
 						case 1:
